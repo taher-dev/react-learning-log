@@ -8,6 +8,8 @@ function App() {
 
   const passwordRef = useRef(null);
 
+  const [copied, setCopied] = useState(false);
+
   const generatePassword = useCallback(() => {
     let pass = "";
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -25,6 +27,9 @@ function App() {
   const copyPasswordToClipboard = useCallback(() => {
     passwordRef.current?.select();
     window.navigator.clipboard.writeText(password);
+
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   }, [password]);
 
   useEffect(() => {
@@ -33,7 +38,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-lg rounded-2xl p-6 bg-white/10 backdrop-blur-xl shadow-2xl border border-white/20">
+      <div className="shadow-[0_0_40px_rgba(56,189,248,0.15)] w-full max-w-lg rounded-2xl p-6 bg-white/10 backdrop-blur-xl shadow-2xl border border-white/20">
         {/* card content */}
         {/* Title */}
         <h1 className="text-white text-center mb-6 text-2xl font-semibold tracking-wide">
@@ -51,10 +56,10 @@ function App() {
             ref={passwordRef}
           />
           <button
-            className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-5 font-medium hover:opacity-90 transition"
+            className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-5 font-medium hover:opacity-90 transition cursor-pointer"
             onClick={copyPasswordToClipboard}
           >
-            Copy
+            {copied ? "Copied!" : "Copy"}
           </button>
         </div>
 
