@@ -6,7 +6,6 @@ function App() {
   const [charAllowed, setCharAllowed] = useState(false);
   const [password, setPassword] = useState("");
 
-  // useRef hook
   const passwordRef = useRef(null);
 
   const generatePassword = useCallback(() => {
@@ -17,16 +16,14 @@ function App() {
 
     for (let i = 1; i < length; i++) {
       let char = Math.floor(Math.random() * str.length + 1);
-
       pass += str.charAt(char);
     }
 
     setPassword(pass);
-  }, [length, numberAllowed, charAllowed, setPassword]);
+  }, [length, numberAllowed, charAllowed]);
 
   const copyPasswordToClipboard = useCallback(() => {
     passwordRef.current?.select();
-    passwordRef.current?.setSelectionRange(0, 30);
     window.navigator.clipboard.writeText(password);
   }, [password]);
 
@@ -35,69 +32,72 @@ function App() {
   }, [length, numberAllowed, charAllowed, generatePassword]);
 
   return (
-    <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-800 text-orange-500">
-      <h1 className="text-white text-center my-3 text-xl">
-        Password Generator
-      </h1>
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="w-full max-w-lg rounded-2xl p-6 bg-white/10 backdrop-blur-xl shadow-2xl border border-white/20">
+        {/* card content */}
+        {/* Title */}
+        <h1 className="text-white text-center mb-6 text-2xl font-semibold tracking-wide">
+          🔐 Password Generator
+        </h1>
 
-      <div className="flex shadow rounded-lg overflow-hidden mb-4">
-        <input
-          type="text"
-          value={password}
-          className="outline-none w-full py-1 pb-1.5 px-3 bg-gray-700 text-white"
-          placeholder="password"
-          readOnly
-          ref={passwordRef}
-        />
-        <button
-          className="outline-none bg-blue-700 text-white px-3 py-0.5 pb-1.5 shrink-0 cursor-pointer"
-          onClick={copyPasswordToClipboard}
-        >
-          copy
-        </button>
-      </div>
-      <div className="flex text-sm gap-x-2">
-        <div className="flex items-center gap-x-1">
+        {/* Input */}
+        <div className="flex rounded-xl overflow-hidden mb-5 border border-white/20">
           <input
-            type="range"
-            value={length}
-            min={4}
-            max={30}
-            className="cursor-pointer"
-            onChange={(e) => setLength(e.target.value)}
+            type="text"
+            value={password}
+            className="w-full px-4 py-2 bg-transparent text-white text-lg outline-none"
+            placeholder="Your secure password"
+            readOnly
+            ref={passwordRef}
           />
-          <label>Length: {length}</label>
+          <button
+            className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-5 font-medium hover:opacity-90 transition"
+            onClick={copyPasswordToClipboard}
+          >
+            Copy
+          </button>
         </div>
 
-        <div className="flex items-center gap-x-1">
-          <input
-            type="checkbox"
-            className="cursor-pointer"
-            name="numberInput"
-            id="numberInput"
-            defaultChecked={numberAllowed}
-            onChange={() => {
-              setNumberAllowed((prev) => !prev);
-            }}
-          />
-          <label className="cursor-pointer" htmlFor="numberInput">
-            Numbers
-          </label>
-        </div>
-        <div className="flex items-center gap-x-1">
-          <input
-            type="checkbox"
-            className="cursor-pointer"
-            name="charInput"
-            id="charInput"
-            defaultChecked={charAllowed}
-            onChange={() => {
-              setCharAllowed((prev) => !prev);
-            }}
-          />
-          <label className="cursor-pointer" htmlFor="charInput">
-            Characters
-          </label>
+        {/* Controls */}
+        <div className="space-y-4 text-sm text-gray-200">
+          {/* Length */}
+          <div>
+            <label className="flex justify-between mb-1">
+              <span>Password Length</span>
+              <span className="text-cyan-400 font-semibold">{length}</span>
+            </label>
+            <input
+              type="range"
+              value={length}
+              min={4}
+              max={30}
+              className="w-full accent-cyan-500 cursor-pointer"
+              onChange={(e) => setLength(e.target.value)}
+            />
+          </div>
+
+          {/* Options */}
+          <div className="flex justify-between">
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                className="accent-cyan-500"
+                checked={numberAllowed}
+                onChange={() => setNumberAllowed((prev) => !prev)}
+              />
+              Include Numbers
+            </label>
+
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                className="accent-cyan-500"
+                checked={charAllowed}
+                onChange={() => setCharAllowed((prev) => !prev)}
+              />
+              Special Characters
+            </label>
+          </div>
         </div>
       </div>
     </div>
