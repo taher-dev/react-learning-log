@@ -1,16 +1,115 @@
-# React + Vite
+# 🔐 Password Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive **Password Generator** built with **React** and **Tailwind CSS**.  
+Generate strong, customizable passwords instantly with a clean, professional UI.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🖼️ Preview
 
-## React Compiler
+<img src="./public/preview.png" alt="Password Generator Preview">
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔢 Adjustable password length (4–30 characters)
+- 🔐 Option to include:
+  - Numbers
+  - Special characters
+- 📋 One-click copy to clipboard
+- 🎨 Modern glassmorphism UI
+- 🌙 Dark theme with gradient background
+- 📱 Fully responsive (desktop & mobile)
+
+---
+
+## 🚀 Tech Stack
+
+- **React** (Hooks: `useState`, `useEffect`, `useCallback`, `useRef`)
+- **Tailwind CSS**
+- **JavaScript (ES6+)**
+- **Vite / CRA compatible**
+
+---
+
+## 📂 Project Structure
+
+```
+
+password-generator/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── index.html
+├── package.json
+└── README.md
+
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the repository
+
+```bash
+git clone https://github.com/your-username/password-generator.git
+cd password-generator
+```
+
+### 2️⃣ Install dependencies
+
+```bash
+npm install
+```
+
+### 3️⃣ Run the development server
+
+```bash
+npm run dev
+```
+
+Open your browser at:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 🧠 How It Works
+
+- Password is generated dynamically using random character selection
+- React hooks handle:
+  - State management
+  - Auto-regeneration on option change
+
+- Clipboard API is used for secure copying
+- Tailwind utility classes power the entire UI
+
+---
+
+## 🎨 UI Highlights
+
+- Glassmorphism card design
+- Neon accent colors (cyan/blue)
+- Smooth hover & focus states
+- Emoji favicon for branding
+
+---
+
+## 🛡️ Security Notes
+
+- Passwords are generated **locally**
+- No data is stored or transmitted
+- Clipboard access uses browser-native API
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
