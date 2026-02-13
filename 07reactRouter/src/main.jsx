@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import Home from './components/Home/Home.jsx';
 import About from './components/About/About.jsx';
 import Contact from './components/Contact/Contact.jsx';
-// import Github from './components/Github/Github.jsx';
+import User from './components/User/User.jsx';
 import Layout from './Layout.jsx';
 
 
@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')).render(
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
-        {/* <Route path="github" element={<Github />} /> */}
+        <Route path="user/:userID" element={<User />} />
       </Route>
     </Routes>
   </BrowserRouter>
